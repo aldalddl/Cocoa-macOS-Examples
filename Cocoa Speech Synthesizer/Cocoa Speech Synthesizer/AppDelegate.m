@@ -25,9 +25,14 @@
 - (void) awakeFromNib {
     NSString *defaultVoice = [NSSpeechSynthesizer defaultVoice];
     NSInteger defaultRow = [voices indexOfObject:defaultVoice];
-    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:defaultRow];
-    [_tableView selectRowIndexes:indices byExtendingSelection:NO];
-    [_tableView scrollRowToVisible:defaultRow];
+    
+    if (defaultRow != NSNotFound) {
+        NSIndexSet *indices = [NSIndexSet indexSetWithIndex:defaultRow];
+        [_tableView selectRowIndexes:indices byExtendingSelection:NO];
+        [_tableView scrollRowToVisible:defaultRow];
+    } else {
+        NSLog(@"Default voice not found in available voices.");
+    }
 }
 
 - (void) speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking {
