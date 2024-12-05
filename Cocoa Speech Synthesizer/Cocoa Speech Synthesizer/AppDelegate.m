@@ -7,26 +7,77 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
-
-@property (strong) IBOutlet NSWindow *window;
-@end
-
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (id) init {
+    self = [super init];
+    
+    if (self) {
+        speechSynthesizer = [[NSSpeechSynthesizer alloc] initWithVoice:nil];
+        [speechSynthesizer setDelegate:self];
+        
+        voices = [NSSpeechSynthesizer availableVoices];
+    }
+    
+    return self;
 }
 
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+- (void) awakeFromNib {
+    NSString *defaultVoice = [NSSpeechSynthesizer defaultVoice];
+    NSInteger defaultRow = [voices indexOfObject:defaultVoice];
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:defaultRow];
+    [_tableView selectRowIndexes:indices byExtendingSelection:NO];
+    [_tableView scrollRowToVisible:defaultRow];
 }
 
-
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
-    return YES;
+- (void) speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking {
+    [_speakButton setEnabled:YES];
+    [_stopButton setEnabled:NO];
+    [_tableView setEnabled:YES];
 }
 
+#pragma mark Table view dataSource methods
+
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
+    return (NSInteger)[voices count];
+}
+
+- (id)tableView:(NSTableView *)tableView
+objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSString *voice = [voices objectAtIndex:row];
+    NSDictionary *voicesDictionary = [NSSpeechSynthesizer attributesForVoice:voice];
+    return [voicesDictionary objectForKey:NSVoiceName];
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification; {
+    NSInteger row = [_tableView selectedRow];
+    
+    if (row == -1) {
+        return;
+    }
+    
+    NSString *selectedVoice = [voices objectAtIndex:row];
+    [speechSynthesizer setVoice:selectedVoice];
+}
+
+#pragma mark Action methods
+
+- (IBAction)stop:(id)sender {
+    [speechSynthesizer stopSpeaking];
+}
+
+- (IBAction)speak:(id)sender {
+    NSString *str = [_textField stringValue];
+    
+    if ([str length] == 0) {
+        return;
+    }
+    
+    [speechSynthesizer startSpeakingString:str];
+    
+    [_speakButton setEnabled:NO];
+    [_stopButton setEnabled:YES];
+    [_tableView setEnabled:NO];
+}
 
 @end
