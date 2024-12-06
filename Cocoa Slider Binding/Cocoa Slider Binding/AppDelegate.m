@@ -21,20 +21,38 @@
                     @"NSRaisesForNotApplicableKeysBindingOption":@YES}];
 }
 
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
-
-
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
-    return YES;
-}
-
+#pragma mark Action methods
 
 - (IBAction)decrement:(id)sender {
+    if (sliderValue == 0) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@"sliderValue"];
+    sliderValue--;
+    [self didChangeValueForKey:@"sliderValue"];
+    
+    [self updateLabel];
 }
 
 - (IBAction)increment:(id)sender {
+    if (sliderValue == 100) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@"sliderValue"];
+    sliderValue++;
+    [self didChangeValueForKey:@"sliderValue"];
+    
+    [self updateLabel];
 }
+
+- (void)sliderValueChanged {
+    [self updateLabel];
+}
+
+- (void)updateLabel {
+    [_label setStringValue:[NSString stringWithFormat:@"%d", (int)sliderValue]];
+}
+
 @end

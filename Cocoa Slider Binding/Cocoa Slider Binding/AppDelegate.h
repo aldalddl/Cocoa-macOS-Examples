@@ -19,6 +19,8 @@
 
 - (IBAction)increment:(id)sender;
 - (IBAction)decrement:(id)sender;
+- (void)sliderValueChanged;
+- (void)updateLabel;
 
 @end
 
