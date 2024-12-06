@@ -29,4 +29,9 @@
 }
 
 
+- (IBAction)decrement:(id)sender {
+}
+
+- (IBAction)increment:(id)sender {
+}
 @end
