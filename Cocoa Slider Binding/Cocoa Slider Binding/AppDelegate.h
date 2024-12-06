@@ -7,7 +7,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    NSInteger sliderValue;
+}
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSSlider *slider;

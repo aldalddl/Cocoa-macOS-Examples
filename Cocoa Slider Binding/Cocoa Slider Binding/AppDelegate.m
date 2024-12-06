@@ -7,15 +7,18 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
-
-@property (strong) IBOutlet NSWindow *window;
-@end
-
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (void)awakeFromNib {
+    sliderValue = 50;
+    
+    [_slider bind:@"value"
+         toObject:self
+      withKeyPath:@"sliderValue"
+          options:@{@"NSContinuouslyUpdatesValue":@YES,
+                    @"NSAllowsEditingMultipleValuesSelectionBindingOption":@YES,
+                    @"NSConditionallySetsEditableBindingOption":@YES,
+                    @"NSRaisesForNotApplicableKeysBindingOption":@YES}];
 }
 
 
