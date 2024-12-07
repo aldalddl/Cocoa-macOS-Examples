@@ -19,6 +19,9 @@
                     @"NSAllowsEditingMultipleValuesSelectionBindingOption":@YES,
                     @"NSConditionallySetsEditableBindingOption":@YES,
                     @"NSRaisesForNotApplicableKeysBindingOption":@YES}];
+    
+    [_slider setTarget:self];
+    [_slider setAction:@selector(sliderValueChanged)];
 }
 
 #pragma mark Action methods
