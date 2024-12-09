@@ -19,5 +19,7 @@
 
 - (void)setTableViewDataSource;
 - (void)setTableViewDelegate;
+- (void)setColumnsIdentifiers;
+- (void)setColumnsSortDescriptors;
 @end
 
