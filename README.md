@@ -54,3 +54,4 @@ Objective-C로 macOS 용 Cocoa 예제 따라하며 학습하기
 **3. Cocoa Table View**
 
 <img height="300" alt="스크린샷 2024-12-09 오후 4 40 10" src="https://github.com/user-attachments/assets/10bba985-9887-4dfe-9090-e83ecd0af9ae">
+<img height="300" src="https://github.com/user-attachments/assets/866a250c-6f1f-4e08-bf7a-a25d849bb853"/>
