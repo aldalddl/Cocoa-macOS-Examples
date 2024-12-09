@@ -6,26 +6,47 @@
 //
 
 #import "AppDelegate.h"
-
-@interface AppDelegate ()
-
-@property (strong) IBOutlet NSWindow *window;
-@end
+#import "FootballClub.h"
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        footballClubs = [[NSMutableArray alloc] init];
+    }
+    
+    return  self;
 }
 
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+- (void)awakeFromNib {
+    [self setTableViewDataSource];
+    [self setTableViewDelegate];
 }
 
+#pragma mark Table View DataSource Methods
 
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
-    return YES;
+- (NSInteger)numberOfRowsInTableView:(NSTableView*)tableView {
+    return  [footballClubs count];
+}
+
+- (id)tableView:(NSTableView *)tableView
+objectValueForTableColumn:(NSTableColumn *)tableColumn
+            row:(NSInteger)row {
+    NSString *columnIdentifier = [tableColumn identifier];
+    FootballClub *club = [footballClubs objectAtIndex:row];
+    
+    return  [club valueForKey:columnIdentifier];
+}
+
+- (void)tableView:(NSTableView *)tableView
+   setObjectValue:(id)object
+   forTableColumn:(NSTableColumn *)tableColumn
+              row:(NSInteger)row {
+    NSString *identifier = [tableColumn identifier];
+    FootballClub *club = [footballClubs objectAtIndex:row];
+    [club setValue:object forKey:identifier];
 }
 
 
@@ -34,4 +55,15 @@
 
 - (IBAction)addClub:(id)sender {
 }
+
+#pragma mark Additional Methods
+
+- (void)setTableViewDataSource {
+    [tableView setDataSource:(id)self];
+}
+
+- (void)setTableViewDelegate {
+    [tableView setDelegate:self];
+}
+
 @end
