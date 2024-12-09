@@ -21,5 +21,8 @@
 - (void)setTableViewDelegate;
 - (void)setColumnsIdentifiers;
 - (void)setColumnsSortDescriptors;
+
+- (void)fillTestData;
+
 @end
 

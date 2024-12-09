@@ -25,6 +25,8 @@
     [self setTableViewDelegate];
     [self setColumnsIdentifiers];
     [self setColumnsSortDescriptors];
+    
+    [self fillTestData];
 }
 
 #pragma mark Table View DataSource Methods
@@ -102,4 +104,28 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [column setSortDescriptorPrototype:sortDescriptor];
     }
 }
+
+- (void)fillTestData {
+    FootballClub *club1 = [[FootballClub alloc] init];
+    [club1 setName:@"Manchester United"];
+    [club1 setFoundationYear:@"1878"];
+    
+    FootballClub *club2 = [[FootballClub alloc] init];
+    [club2 setName:@"Liverpool"];
+    [club2 setFoundationYear:@"1892"];
+    
+    FootballClub *club3 = [[FootballClub alloc] init];
+    [club3 setName:@"Real Madrid"];
+    [club3 setFoundationYear:@"1902"];
+    
+    FootballClub *club4 = [[FootballClub alloc] init];
+    [club4 setName:@"Barcelona"];
+    [club4 setFoundationYear:@"1899"];
+    
+    [footballClubs addObject:club1];
+    [footballClubs addObject:club2];
+    [footballClubs addObject:club3];
+    [footballClubs addObject:club4];
+}
+
 @end
