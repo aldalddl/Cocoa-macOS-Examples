@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="tableView" destination="sjp-A0-f4V" id="Rks-h2-yEq"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="oWD-IQ-Vv6"/>
             </connections>
         </customObject>
@@ -768,9 +769,6 @@
                     </button>
                 </subviews>
             </view>
-            <connections>
-                <outlet property="delegate" destination="Voe-Tx-rLC" id="top-28-M4D"/>
-            </connections>
             <point key="canvasLocation" x="200" y="400"/>
         </window>
     </objects>

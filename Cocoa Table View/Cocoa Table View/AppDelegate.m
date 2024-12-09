@@ -63,9 +63,20 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 #pragma mark Action Methods
 
 - (IBAction)removeClub:(id)sender {
+    NSIndexSet *rows = [tableView selectedRowIndexes];
+    
+    if ([rows count] == 0) {
+        return;
+    }
+    
+    [footballClubs removeObjectsAtIndexes:rows];
+    [tableView reloadData];
 }
 
 - (IBAction)addClub:(id)sender {
+    FootballClub *club = [[FootballClub alloc] init];
+    [footballClubs addObject:club];
+    [tableView reloadData];
 }
 
 #pragma mark Additional Methods
