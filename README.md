@@ -26,7 +26,8 @@ Objective-C로 macOS 용 Cocoa 예제 따라하며 학습하기
     - 둘 다 명시해주면 Swift에서 사용 시 `optional` / `non-optional` 타입으로 매핑되어 유용
     - `nullable`과 `nonnull`은 컴파일러 힌트로 동작
      </br> `nonnull`에 nil이 들어가도 컴파일 경고만 일어나고 오류가 일어나지 않음
-     </br> 런타임에서도 강제 검사가 없어 nil이 전달되도 강제로 오류를 발생시키지 않음, 필수 값이라고 가정한 코드에서 예상치 못한 결과 발생 가능
+     </br> 런타임에서도 강제 검사가 없어 nil이 전달되도 강제로 오류를 발생시키지 않음
+     </br> -> 필수 값이라고 가정한 코드에서 예상치 못한 결과 발생 가능
     - `nonnull`을 생략하면 컴파일러는 `nullable`로 해석하기 때문에 반드시 값이 있어야하는 경우에 써주어야 함
      </br> + 값을 강제하므로 불필요한 nil 검사 코드 줄일 수 있음
 - 헤더가드
@@ -49,3 +50,7 @@ Objective-C로 macOS 용 Cocoa 예제 따라하며 학습하기
 **2. Cocoa Slider Binding**
 
 <img height="300" alt="2" src="https://github.com/user-attachments/assets/04551c1e-e1a6-4e7e-9070-2630646866f6">
+
+**3. Cocoa Table View**
+
+<img height="300" alt="스크린샷 2024-12-09 오후 4 40 10" src="https://github.com/user-attachments/assets/10bba985-9887-4dfe-9090-e83ecd0af9ae">
